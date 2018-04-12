@@ -13,7 +13,7 @@
       saveUninitialized: true
     },
 
-    var client = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST, { auth_pass: process.env.REDIS_PASS, tls: { servername: process.env.REDIS_HOST } });
+    var client = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST, { auth_pass: process.env.REDIS_PASS });
 
     session_redis: {
       store: new RedisStore({client: client}),
