@@ -5,6 +5,10 @@
       RedisStore   = require('connect-redis')(session),
       redis        = require('redis');
 
+  var client = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST, 
+                                  {auth_pass: process.env.REDIS_PASS,
+                                  tls: { servername: process.env.REDIS_HOST }});
+  
   module.exports = {
     session: {
       name: 'md.sid',
@@ -12,8 +16,6 @@
       resave: false,
       saveUninitialized: true
     },
-
-    var client = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST, { auth_pass: process.env.REDIS_PASS, tls: { servername: process.env.REDIS_HOST } });
 
     session_redis: {
       store: new RedisStore({client: client}),
